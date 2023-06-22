@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Şirket</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+
+
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0"><i class="fa fa-search me-2"></i>EMIRHAN<span class="fs-5">EROL</span></h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="./index.html" class="nav-item nav-link active">Anasayfa</a>
+                        <a href="./BilgilerDetay.html" class="nav-item nav-link">Detaylı Bilgiler</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated zoomIn">Şirketimizin Çalışan Bilgileri</h1>
+                            <p class="text-white pb-3 animated zoomIn">Çalışanlarımızı alttaki tablodan görebilirsiniz. Detaylı Bilgi edinmek için 'Detaylı Bilgiler' e tıklayınız. </p>
+                            <a href="./BilgilerDetay.html" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Detaylı Bilgiler</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid" src="img/hero.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tab-content">
+        <div class="tab-pane container active" id="home">
+            <div class="container">
+                <table class="table table-bordered mx-auto bg-primary text-light">
+                    <thead>
+                        <tr>
+                            <th>İsimler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="isim1"></td>
+                        </tr>
+                        <tr>
+                            <td id="isim2"></td>
+                        </tr>
+                        <tr>
+                            <td id="isim3"></td>
+                        </tr>
+                        <tr>
+                            <td id="isim4"></td>
+                        </tr>
+                        <tr>
+                            <td id="isim5"></td>
+                        </tr>
+                        <tr>
+                            <td id="isim6"></td>
+                        </tr>
+                        <tr>
+                            <td id="isim7"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+                crossorigin="anonymous"></script>
+
+            <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+                integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+                crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function () {
+                    console.log("ready!");
+
+
+                    const socket = io("http://localhost:8081", {
+                        transports: ["websocket", "polling", "flashsocket"],
+                        path: "/ws/socket.io"
+                    });
+
+                    socket.on("isim", data => {
+
+                        data[0].map((item, index) => {
+                            console.log(item);
+                            $("#isim" + (index + 1)).html(item);
+                        });
+
+                    });
+
+
+
+
+
+
+                    socket.emit("isim");
+
+
+
+                });
+            </script>
+
+
+                <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
